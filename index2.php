@@ -39,7 +39,7 @@ function resizeImage($sourcePath, $targetPath, $maxWidth, $maxHeight) {
             die("Unsupported image type.");
     }
 
-    // ✅ Fix orientation before resizing
+    // Fix orientation before resizing
     if ($imageType == IMAGETYPE_JPEG) {
         fixImageOrientation($sourcePath, $image);
     }
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
 
     resizeImage($tmpName, $targetPath, 800, 800); // max size 800x800
 
-    echo "<p>✅ Image uploaded & resized successfully!</p>";
+    echo "<p>Image uploaded & resized successfully!</p>";
     echo "<p>Saved to: uploads/$fileName</p>";
     echo "<img src='uploads/$fileName' style='max-width:400px;'><br>";
 }
@@ -153,54 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
             background: #c0392b;
         }
     </style>
-
-    <style>
-    /* Thumbnail style */
-    .thumbnail {
-      width: 150px;
-      cursor: pointer;
-      border: 2px solid #ccc;
-      border-radius: 6px;
-      transition: 0.3s;
-    }
-    .thumbnail:hover {
-      border-color: #333;
-    }
-
-    /* Fullscreen overlay */
-    .overlay {
-      display: none; /* hidden by default */
-      position: fixed;
-      z-index: 1000;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .overlay img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.5);
-    }
-
-    /* Close button */
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 40px;
-      font-weight: bold;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .close-btn:hover {
-      color: red;
-    }
-  </style>
+    
 </head>
 <body>
     <h2>Upload an Image (JPEG, PNG, GIF)</h2>
@@ -255,33 +208,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
             uploadBtn.disabled = true;
         }
     </script>
-    <!-- <script>
-        const imageInput = document.getElementById('imageInput');
-        const previewContainer = document.getElementById('previewContainer');
-        const previewImage = document.getElementById('previewImage');
-        const removePreview = document.getElementById('removePreview');
-
-        // Show preview when file selected
-        imageInput.addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    previewImage.src = e.target.result;
-                    previewContainer.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            } else {
-                previewContainer.style.display = 'none';
-            }
-        });
-
-        // Remove preview
-        removePreview.addEventListener('click', function () {
-            previewImage.src = '';
-            previewContainer.style.display = 'none';
-            imageInput.value = ''; // Clear file input
-        });
-    </script> -->
+    
 </body>
+
 </html>
